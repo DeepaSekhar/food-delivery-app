@@ -1,0 +1,9 @@
+<div *ngIf="restaurents$ | async as restaurents">
+    <div *ngFor="let restaurent of restaurents">
+
+      <h3>{{restaurent.name}}</h3>
+    </div>
+
+    <pre>{{restaurents | json}}</pre>
+
+</div>
