@@ -8,8 +8,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +27,10 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, RouterModule.forRoot(routes)
 
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
