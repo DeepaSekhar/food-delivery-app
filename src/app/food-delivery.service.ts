@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Latlong } from './models/latlong.interface'
 import { HttpClient } from '@angular/common/http';
 import { Restaurents } from './models/restaurent.interface'
+import { Users } from "./models/user.interface"
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class FoodDeliveryService {
   restauents$: Observable<Restaurents[]> | undefined
 
   url: string = "http://localhost:3000/restaurents"
+  userUrl: string = "http://localhost:3000/users"
   constructor(private http: HttpClient) { }
 
   getRestaurents(): Observable<Restaurents[]> {
@@ -19,6 +21,14 @@ export class FoodDeliveryService {
     console.log(this.restauents$)
     return this.restauents$
   }
+
+  getUsers(): Observable<any> {
+    return this.http.get(this.userUrl);
+  }
+
+
+
+
   // getUsersLoccation(): Observable<Latlong> {
 
   //   return navigator.geolocation.getCurrentPosition(res => {
