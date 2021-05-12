@@ -12,5 +12,21 @@
             "id": 3,
             "name": "restaurent3"
         }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "firstname": "deepa",
+            "lastname": "akhil",
+            "username": "deepaakhil",
+            "password": "deepa"
+        },
+        {
+            "id": 2,
+            "firstname": "devna",
+            "lastname": "akhil",
+            "username": "devnaakhil",
+            "password": "devna"
+        }
     ]
 }
