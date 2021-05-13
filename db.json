@@ -1,32 +1,39 @@
 {
-    "restaurents": [
-        {
-            "id": 1,
-            "name": "restaurent1"
-        },
-        {
-            "id": 2,
-            "name": "restaurent2"
-        },
-        {
-            "id": 3,
-            "name": "restaurent3"
-        }
-    ],
-    "users": [
-        {
-            "id": 1,
-            "firstname": "deepa",
-            "lastname": "akhil",
-            "username": "deepaakhil",
-            "password": "deepa"
-        },
-        {
-            "id": 2,
-            "firstname": "devna",
-            "lastname": "akhil",
-            "username": "devnaakhil",
-            "password": "devna"
-        }
-    ]
+  "restaurents": [
+    {
+      "id": 1,
+      "name": "restaurent1"
+    },
+    {
+      "id": 2,
+      "name": "restaurent2"
+    },
+    {
+      "id": 3,
+      "name": "restaurent3"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "firstname": "deepa",
+      "lastname": "akhil",
+      "username": "deepaakhil",
+      "password": "deepa"
+    },
+    {
+      "id": 2,
+      "firstname": "devna",
+      "lastname": "akhil",
+      "username": "devnaakhil",
+      "password": "devna"
+    },
+    {
+      "firstname": "danny",
+      "lastname": "a",
+      "username": "dannyholition",
+      "password": "danny",
+      "id": 3
+    }
+  ]
 }

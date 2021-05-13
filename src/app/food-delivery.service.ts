@@ -4,16 +4,16 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Latlong } from './models/latlong.interface'
 import { HttpClient } from '@angular/common/http';
 import { Restaurents } from './models/restaurent.interface'
-import { Users } from "./models/user.interface"
+import { Customer } from "./models/customer.interface"
 
 @Injectable({
   providedIn: 'root'
 })
 export class FoodDeliveryService {
   restauents$: Observable<Restaurents[]> | undefined
-
+  newcustomer: Customer | undefined
   url: string = "http://localhost:3000/restaurents"
-  userUrl: string = "http://localhost:3000/users"
+  userUrl: string = "http://localhost:3000/customers"
   constructor(private http: HttpClient) { }
 
   getRestaurents(): Observable<Restaurents[]> {
@@ -25,7 +25,10 @@ export class FoodDeliveryService {
   getUsers(): Observable<any> {
     return this.http.get(this.userUrl);
   }
+  postCustomers(newcustomer: Partial<Customer>): Observable<Customer> {
+    return this.http.post<Customer>(this.userUrl, this.newcustomer)
 
+  }
 
 
 

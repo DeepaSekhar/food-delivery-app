@@ -1,5 +1,5 @@
 <h2>Registration Form</h2>
-<form>
+<form #postForm="ngForm" (ngSubmit)="userRegister()">
     <!-- first name -->
     <div class="form-group">
         <label>First Name</label>
@@ -20,6 +20,6 @@
         <label>Password</label>
         <input type="password" class="form-control" name="password"[(ngModel)]="password">
     </div>
-    <button type="submit"(click)="userRegister()">Submit</button>
+    <button type="submit">Submit</button>
 </form>
 

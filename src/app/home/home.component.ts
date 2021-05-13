@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FoodDeliveryService } from '../food-delivery.service';
-import { Users } from "../models/user.interface"
+import { Customer } from "../models/customer.interface"
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { Users } from "../models/user.interface"
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  users: Users[] | undefined
+  users: Customer[] | undefined
   constructor(private router: Router,
     private foodDeliveryService: FoodDeliveryService) { }
 
