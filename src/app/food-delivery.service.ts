@@ -5,15 +5,17 @@ import { Latlong } from './models/latlong.interface'
 import { HttpClient } from '@angular/common/http';
 import { Restaurents } from './models/restaurent.interface'
 import { Customer } from "./models/customer.interface"
-
+import { Login } from './models/login.interface';
+import { take, tap } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
 export class FoodDeliveryService {
   restauents$: Observable<Restaurents[]> | undefined
   newcustomer: Customer | undefined
+  authUser: Customer | undefined;
   url: string = "http://localhost:3000/restaurents"
-  userUrl: string = "http://localhost:3000/customers"
+  customerUrl: string = "http://localhost:3000/customers"
   constructor(private http: HttpClient) { }
 
   getRestaurents(): Observable<Restaurents[]> {
@@ -22,13 +24,42 @@ export class FoodDeliveryService {
     return this.restauents$
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.userUrl);
+  getCustomers(): Observable<any> {
+    return this.http.get(this.customerUrl);
   }
   postCustomers(newcustomer: Partial<Customer>): Observable<Customer> {
-    return this.http.post<Customer>(this.userUrl, this.newcustomer)
+    // console.log("from service", newcustomer);
+    return this.http.post<Customer>(this.customerUrl, newcustomer)
+    // .pipe(
+    //   tap(
+    //     res => console.log("from function", res)
+
+    //   ),
+    //   take(1)
+    // )
+    //  .subscribe()
+  }
+
+  loginAuthentication(loginUser: Login) {
+    console.log("login aunthentication service", loginUser)
+    this.http.get<Customer[]>(`${this.customerUrl}?username=${loginUser.username}`)
+      .subscribe(res => {
+        console.log("loginauth", res)
+        if (res[0] === undefined) {
+          console.log("user not found");
+        }
+        else if (res[0].password === loginUser.password) {
+          console.log("successfully login")
+        }
+        else {
+          console.log("password is incorrect")
+        }
+      })
+
 
   }
+
+}
 
 
 
@@ -45,4 +76,4 @@ export class FoodDeliveryService {
   // }
 
 
-}
+

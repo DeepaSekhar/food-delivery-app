@@ -9,15 +9,15 @@ import { Customer } from "../models/customer.interface"
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  users: Customer[] | undefined
+  customers: Customer[] | undefined
   constructor(private router: Router,
     private foodDeliveryService: FoodDeliveryService) { }
 
   ngOnInit(): void {
-    this.foodDeliveryService.getUsers().subscribe(
+    this.foodDeliveryService.getCustomers().subscribe(
       data => {
-        this.users = data;
-        console.log("users", this.users)
+        this.customers = data;
+        console.log("users", this.customers)
       }
     )
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { FoodDeliveryService } from '../food-delivery.service';
+import { Login } from "../models/login.interface"
 
 @Component({
   selector: 'app-login',
@@ -9,24 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   username: string | undefined;
   password: string | undefined;
+  login: Login | undefined
 
-
-  constructor() { }
-
+  constructor(private foodDeliveryService: FoodDeliveryService) { }
   ngOnInit() {
 
   }
 
   loginUser() {
-    if (this.username == "Deepa" && this.password == "1234") {
-      console.log("user login")
+    this.login = {
+
+      username: this.username as string,
+      password: this.password as string,
     }
-    else {
-      console.log("user unauthorised")
-    }
+    console.log("login details", this.login);
+    this.foodDeliveryService.loginAuthentication(this.login)
 
   }
+
 }
-
-
-

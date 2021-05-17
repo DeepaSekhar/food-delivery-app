@@ -26,9 +26,6 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.route.paramMap.subscribe(parameterMap => {
-    //   this.userId = +parameterMap.get('id');
-    // })
   }
 
 
@@ -40,12 +37,12 @@ export class RegisterComponent implements OnInit {
       firstname: this.firstname,
       lastname: this.lastname,
       username: this.lastname,
-      password: this.password
+      password: this.password,
     }
-
-
-
-    this.foodDeliveryService.postCustomers(this.newCustomer)
+    console.log("new customer", this.newCustomer);
+    this.foodDeliveryService.postCustomers(this.newCustomer).subscribe(res => {
+      console.log("response from subscription", res);
+    })
 
   }
 }
