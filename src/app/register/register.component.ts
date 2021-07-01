@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
 
       firstname: this.firstname,
       lastname: this.lastname,
-      username: this.lastname,
+      username: this.username,
       password: this.password,
     }
     console.log("new customer", this.newCustomer);
