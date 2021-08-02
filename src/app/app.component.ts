@@ -10,7 +10,7 @@ import { FoodDeliveryService } from './food-delivery.service';
 })
 export class AppComponent {
   title = 'food-delivery-app';
-  loginUser$: Observable<String> | undefined;
+  loginUser$: Observable<String | null>;
   constructor(private foodDeliveryService: FoodDeliveryService) {
     this.loginUser$ = this.foodDeliveryService.loginUser$;
   }

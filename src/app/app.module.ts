@@ -10,13 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component'; // CLI imports router
+import { AuthGuard } from './auth.guard';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'landing', component: LandingPageComponent }
-
+  { path: 'menu', component: MenuComponent },
+  {
+    path: 'landing',
+    component: LandingPageComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 @NgModule({
   declarations: [
@@ -26,16 +32,17 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule, RouterModule.forRoot(routes)
-
+    FormsModule,
+    RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
