@@ -1,3 +1,4 @@
 <div *ngIf="restauentMenu$ | async as restmenu">
   <div>{{ restmenu[0].menu | json }}</div>
+  <button (click)="addToBasket(restmenu)">Add Me</button>
 </div>
