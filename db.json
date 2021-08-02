@@ -2,15 +2,46 @@
   "restaurents": [
     {
       "id": 1,
-      "name": "restaurent1"
+      "name": "KFC",
+      "loccation": "dagenham",
+      "menu": [
+        {
+          "dish": "popcorn chicken",
+          "price": 3.99
+        },
+        {
+          "dish": "Veriety meal",
+          "price": 4.99
+        },
+        {
+          "dish": "popcorn chicken",
+          "price": 2.99
+        }
+      ]
     },
     {
       "id": 2,
-      "name": "restaurent2"
+      "name": "MC donalds",
+      "loccation": "fgf",
+      "menu": [
+        {
+          "dish1": "Mc Nugget box ",
+          "dish2": "Mc Medium meal",
+          "dish3": "Happy meal for devna"
+        }
+      ]
     },
     {
       "id": 3,
-      "name": "restaurent3"
+      "name": "Indian",
+      "loccation": "fgf",
+      "menu": [
+        {
+          "dish1": "Biriyani",
+          "dish2": "Rice & curry meals",
+          "dish3": "Parata & beef curry"
+        }
+      ]
     }
   ],
   "customers": [
@@ -145,6 +176,16 @@
       "username": "dhs",
       "password": "gfhds",
       "id": 25
+    },
+    {
+      "firstname": "dee",
+      "lastname": "ggg",
+      "username": "ggg",
+      "password": "thd",
+      "id": 26
+    },
+    {
+      "id": 27
     }
   ]
 }
