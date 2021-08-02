@@ -1,3 +1,10 @@
+<h1>landing page</h1>
+<button (click)="logout()">Logout</button>
+
 <div *ngIf="loginUser$ | async as loginuser">
   <h1 class="username">Welcome {{ loginuser }}</h1>
+</div>
+<div *ngIf="restauents$ | async as restaurent">
+  <p>{{ restaurent[0].name }}</p>
+  <button (click)="findMenu()">Menu</button>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, Subject } from 'rxjs';
+import { BehaviorSubject, of, Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Latlong } from './models/latlong.interface';
 import { HttpClient } from '@angular/common/http';
@@ -16,8 +16,8 @@ export class FoodDeliveryService {
   newcustomer: Customer | undefined;
   authUser: Customer | undefined;
   //subject
-  loginUser$: Observable<String> | undefined;
-  private LoginUserSubject = new Subject<String>();
+  loginUser$: Observable<String | null>;
+  private LoginUserSubject = new BehaviorSubject<String | null>(null);
 
   url: string = 'http://localhost:3000/restaurents';
   customerUrl: string = 'http://localhost:3000/customers';
@@ -45,37 +45,40 @@ export class FoodDeliveryService {
       .pipe(tap(() => this.router.navigate(['/login'])));
   }
 
-  loginAuthentication(loginUser: Login) {
+  loginAuthentication(loginUser: Login): void {
     console.log('login aunthentication service', loginUser);
     //multicasting observable(sending value to the component)
-    this.LoginUserSubject.next(loginUser.username);
 
     this.http
       .get<Customer[]>(`${this.customerUrl}?username=${loginUser.username}`)
-      .subscribe((res) => {
-        console.log('loginauth', res);
-
-        //validating the user
-        if (res[0] === undefined) {
-          console.log('user not found');
-        } else if (res[0].password === loginUser.password) {
-          console.log('successfully login');
-          this.router.navigate(['/landing']);
-        } else {
-          console.log('password is incorrect');
-        }
-      });
+      .pipe(
+        take(1),
+        tap((res) => {
+          if (res[0] === undefined) {
+            console.log('user not found');
+          } else if (res[0].password === loginUser.password) {
+            console.log('successfully login');
+            this.LoginUserSubject.next(loginUser.username);
+            this.router.navigate(['/landing']);
+          } else {
+            console.log('password is incorrect');
+          }
+        })
+      )
+      .subscribe();
   }
+
+  //validating the user
+
+  // getUsersLoccation(): Observable<Latlong> {
+
+  //   return navigator.geolocation.getCurrentPosition(res => {
+  //     const lat = res.coords.latitude;
+  //     const lng = res.coords.longitude;
+  //     console.log("geo loccation after", res);
+  //     console.log("latlong", { lat, lng });
+  //     return of({ lat, lng })
+  //   }) as unknown as Observable<Latlong>
+
+  //
 }
-
-// getUsersLoccation(): Observable<Latlong> {
-
-//   return navigator.geolocation.getCurrentPosition(res => {
-//     const lat = res.coords.latitude;
-//     const lng = res.coords.longitude;
-//     console.log("geo loccation after", res);
-//     console.log("latlong", { lat, lng });
-//     return of({ lat, lng })
-//   }) as unknown as Observable<Latlong>
-
-// }
