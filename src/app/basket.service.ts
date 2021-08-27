@@ -13,4 +13,7 @@ export class BasketService {
     this.restaurentMenu$ = menu;
     console.log('basket service', this.restaurentMenu$);
   }
+  
+
 }
+

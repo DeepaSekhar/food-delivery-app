@@ -25,9 +25,16 @@
       "loccation": "fgf",
       "menu": [
         {
-          "dish1": "Mc Nugget box ",
+          "dish": "Mc Nugget box ",
+          "price": 3.99
+        },
+        {
           "dish2": "Mc Medium meal",
-          "dish3": "Happy meal for devna"
+          "price": 3.99
+        },
+        {
+          "dish": "Happy meal for devna",
+          "price": 2.49
         }
       ]
     },
@@ -38,8 +45,15 @@
       "menu": [
         {
           "dish1": "Biriyani",
+          "price": 4.99
+        },
+        {
           "dish2": "Rice & curry meals",
-          "dish3": "Parata & beef curry"
+          "price": 5.99
+        },
+        {
+          "dish3": "Parata & beef curry",
+          "price": 8.99
         }
       ]
     }
@@ -67,9 +81,9 @@
       "id": 3
     },
     {
-      "firstname": "akhl",
+      "firstname": "akhil",
       "lastname": "b",
-      "username": "akhilb",
+      "username": "deepa",
       "password": "akhil",
       "id": 4
     },

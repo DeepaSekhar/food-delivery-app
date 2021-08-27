@@ -5,6 +5,8 @@
   <h1 class="username">Welcome {{ loginuser }}</h1>
 </div>
 <div *ngIf="restauents$ | async as restaurent">
-  <p>{{ restaurent[0].name }}</p>
-  <button (click)="findMenu()">Menu</button>
+  <div *ngFor="let rest of restaurent">
+    <p>{{ rest.name }}</p>
+    <button (click)="findMenu(rest.id)">Menu</button>
+  </div>
 </div>

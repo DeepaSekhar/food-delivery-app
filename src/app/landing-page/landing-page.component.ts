@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FoodDeliveryService } from '../food-delivery.service';
@@ -16,7 +16,8 @@ export class LandingPageComponent implements OnInit {
 
   constructor(
     private foodDeliveryService: FoodDeliveryService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -24,12 +25,17 @@ export class LandingPageComponent implements OnInit {
     // this.restauents$.subscribe((res) => console.log(res));
     // .pipe(
     //   tap(res=>console.log(res)))
+    // this.route.paramMap.subscribe((parameterMap) => {
+    // const menuId = +parameterMap.get('id')
+    // console.log(menuId);
+    // });
   }
 
   logout() {
     this.router.navigate(['/login']);
   }
-  findMenu() {
-    this.router.navigate(['/menu']);
+  findMenu(id: number) {
+    console.log('id from menu button', id);
+    this.router.navigate(['/menu', id]);
   }
 }

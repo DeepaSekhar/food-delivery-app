@@ -17,12 +17,13 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'menu', component: MenuComponent },
+
   {
     path: 'landing',
     component: LandingPageComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'menu/:id', component: MenuComponent },
 ];
 @NgModule({
   declarations: [

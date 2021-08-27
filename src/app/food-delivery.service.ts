@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, of, Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Latlong } from './models/latlong.interface';
 import { HttpClient } from '@angular/common/http';
 import { Restaurents } from './models/restaurent.interface';
 import { Customer } from './models/customer.interface';
 import { Login } from './models/login.interface';
-import { take, tap } from 'rxjs/operators';
+import { filter, take, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,7 @@ export class FoodDeliveryService {
   //subject
   loginUser$: Observable<String | null>;
   private LoginUserSubject = new BehaviorSubject<String | null>(null);
+  private RestaurentById = new ReplaySubject<Restaurents>(1);
 
   url: string = 'http://localhost:3000/restaurents';
   customerUrl: string = 'http://localhost:3000/customers';
@@ -67,6 +68,24 @@ export class FoodDeliveryService {
       )
       .subscribe();
   }
+
+  getRestaurentById(id: number): void {
+    console.log('id from the menu component', id);
+
+    this.restauents$
+      ?.pipe(
+        tap((rests: Restaurents[]) => {
+          const filteredRest = rests.filter(
+            (restaurent) => restaurent.id === id
+          )[0];
+          this.RestaurentById.next(filteredRest);
+        })
+      )
+      .subscribe();
+  }
+  // getMenuById(id: number): Observable<Restaurents> {
+
+  // }
 
   //validating the user
 
